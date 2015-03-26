@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: "maven"
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath 'au.com.ish.gradle:release:2.1'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://repo.spring.io/libs-milestone"
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
+    compile 'org.springframework.data:spring-data-cassandra:1.1.2.RELEASE'
+
+    // utils
+    compile 'joda-time:joda-time:2.7'
+
+    // test
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
